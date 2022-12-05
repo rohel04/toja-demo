@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../injection_container.dart';
 import '../../../../authentication/presentation/pages/sign_in_home_screen.dart';
+import '../../../../splash_screen/presentation/wrapper.dart';
 import '../bloc/myaccount_bloc.dart';
 
 class MyAccountHomeScreen extends StatefulWidget {
@@ -49,7 +50,7 @@ class _MyAccountHomeScreenState extends State<MyAccountHomeScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${state.user!.displayName}',style: TextStyle(color: Colors.white,fontSize: 18),),
+                        Row(children: [Text('${state.user!.displayName}' ,style: TextStyle(color: Colors.white,fontSize: 18), ),SizedBox(width: 10),Text(state.user!.userType==0?'(Consumer)':'(Vendor)',style: TextStyle(color: Colors.white,fontSize: 18),)]),
                         Text('${state.user!.email}',style: TextStyle(color: Colors.white,fontSize: 12))
                       ],
                     ),
@@ -69,7 +70,7 @@ class _MyAccountHomeScreenState extends State<MyAccountHomeScreen> {
           ),
            ElevatedButton(onPressed: () async{
             await FirebaseAuth.instance.signOut();
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>SignInScreen()), (route) => false);
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Wrapper()), (route) => false);
            },child: Text('Sign Out',style: TextStyle(color:ColorUtil.kAuthColor),),
            style: ElevatedButton.styleFrom(
              backgroundColor: Colors.white,

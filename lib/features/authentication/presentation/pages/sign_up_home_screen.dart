@@ -131,6 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               content: Text(LocaleKeys.Signed_up_success.tr()),
                               backgroundColor: Colors.green,
                             ));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SelectCategoriesScreen()));
                           }
                           if (state is RegistrationError) {
                             ScaffoldMessenger.of(context)

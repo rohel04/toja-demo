@@ -140,6 +140,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               listener: (context,state){
                                 if(state is AuthenticationLoaded){
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Signed in Successfully'),backgroundColor: Colors.green,));
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SelectCategoriesScreen()));
                                 }
                                 if(state is AuthenticationError){
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${state.message}'),backgroundColor: Colors.red,));

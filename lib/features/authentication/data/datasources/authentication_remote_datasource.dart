@@ -62,7 +62,12 @@ class RemoteDataSourceImpl implements RemoteDataSource{
       imgUrl=await ref.getDownloadURL();
        await FirebaseFirestore.instance.collection('users').doc(uid).set(
       {'fullname': fullName, 'username':username,'contact': contact, 'usertype': userType,'vendorname':vendorName,'city':city,'streetAddress':streetAddress,'image':imgUrl});
-      await firebaseAuth.currentUser?.updateDisplayName(fullName);
+       if(userType==0){
+         await firebaseAuth.currentUser?.updateDisplayName(fullName);
+       }
+       else{
+         await firebaseAuth.currentUser?.updateDisplayName(vendorName);
+       }
       await firebaseAuth.currentUser?.reload();
       return _userFromFirebase(authResult.user);
     }on FirebaseAuthException catch(e){

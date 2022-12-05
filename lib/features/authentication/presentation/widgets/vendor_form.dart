@@ -26,15 +26,15 @@ class _VendorFormState extends State<VendorForm> {
       _formkey.currentState?.save();
       buildContext
           .read<AuthenticationBloc>()
-          .add(RegisterUserEvent(email: email, password: password,venderName: vendor_name,contact: contact,city: city,streetAddress: street_address, userType: userType, imageFile: imageFile!));
-      print('$vendor_name, $contact, $password, $email');
+          .add(RegisterUserEvent(email: email, password: password,venderName: fullName,contact: contact,city: city,streetAddress: street_address, userType: userType, imageFile: imageFile!));
+
       //call api
     }
   }
 
   String email = '';
   String password = '';
-  String? vendor_name = '';
+  String? fullName = '';
   String? street_address = '';
   String? city = '';
   String contact='';
@@ -75,7 +75,7 @@ class _VendorFormState extends State<VendorForm> {
           CustomTextField(
               obscureText: false,
               onChanged: (value) {
-                vendor_name = value;
+                fullName = value;
               },
               validation: CustomValidator.emptyValidation),
           SizedBox(height: 20),

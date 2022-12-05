@@ -22,7 +22,8 @@ class MyAccountRemoteDataSourceImpl implements MyAccountRemoteDataSource{
     var email=firebaseAuth.currentUser?.email;
     var storeResult=await firebaseStore.collection('users').doc(uid).get();
     var profileImage=storeResult['image'];
-    return UserModel(uid: uid,displayName: displayName,email: email,profilePicture: profileImage);
+    var userType=storeResult['usertype'];
+    return UserModel(uid: uid,displayName: displayName,email: email,profilePicture: profileImage,userType: userType);
 
   }
 
